@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>示例2</title>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div1"></div>
+<div class="div2"></div>
+<div class="div3"></div>
+<div class="div4"></div>
+<div class="div5"></div>
+<div class="div6"></div>
+
+<script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.js"></script>
+<script src="../dist/func-chain.umd.js"></script>
+<script>
+    /**
+     * 在随机时间内隐藏目标元素
+     * @param target 目标元素选择器
+     * @param cb 回调函数
+     */
+    function hideDiv(target, cb) {
+        $(target).hide(700, cb)
+    }
+
+    // 表达式语法
+    Chain()
+    > hideDiv.args('.div1')
+    > hideDiv.args('.div2')
+    > hideDiv.args('.div3')
+    > hideDiv.args('.div4')
+    > hideDiv.args('.div5')
+    > hideDiv.args('.div6')
+    || Chain.go()
+
+    // 标准语法
+    // var chain = new Chain()
+    //
+    // for(var i = 1; i <= 6; i++) {
+    //     chain.add(hideDiv.args('.div' + i))
+    // }
+    //
+    // chain.go()
+</script>
+</body>
+</html>

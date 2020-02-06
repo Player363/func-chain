@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>示例1</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script src="../dist/func-chain.umd.js"></script>
+<script>
+    function ajax1(next) {
+        console.log('ajax1 start')
+        setTimeout(function () {
+            console.log('ajax1 end')
+            next()
+        }, 1000)
+    }
+    function ajax2(next) {
+        console.log('ajax2 start')
+        setTimeout(function () {
+            console.log('ajax2 end')
+            next()
+        }, 1000)
+    }
+    function ajax3(next) {
+        console.log('ajax3 start')
+        setTimeout(function () {
+            console.log('ajax3 end')
+            next()
+        }, 1000)
+    }
+
+    // 表达式语法
+    Chain() > ajax1 > ajax2 > ajax3 > ajax2 > ajax1 || Chain.go()
+    // 标准语法
+    // new Chain(ajax1, ajax2, ajax3, ajax2, ajax1).go()
+</script>
+</body>
+</html>

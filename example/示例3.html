@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>示例3</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<script src="../dist/func-chain.umd.js"></script>
+<script>
+    // 发送ajax请求数据 | 异步
+    function requestData(url, cb) {
+        // 假数据
+        var mockData = url + Math.random()
+        setTimeout(function () {cb && cb(mockData)}, Math.random() * 1000 + 500)
+    }
+
+    // 渲染HTML页面 | 同步
+    function renderHTML(data, cb) {
+        // 计数
+        renderHTML.count = renderHTML.count + 1 || 1
+
+        document.getElementsByTagName('body')[0].innerHTML += data + '<br/>'
+
+        cb && cb(renderHTML.count)
+    }
+
+    // 做一些其它的异步或者同步的事情
+    // 函数链中最后一个函数可以不用callback
+    function other(count, cb) {
+        console.log('渲染了' + count + '次')
+
+        cb && cb()
+    }
+
+    var chain = Chain() > requestData > renderHTML > other || Chain.end()
+    // cgo()在结尾的时候会默认执行一次, cend()不会
+
+    chain.go('百度')
+    chain.go('网易')
+    chain.go('新浪')
+    // 任务链可复用，多次调用互不冲突
+    // go()方法中的参数会传递给函数链中第一个方法
+</script>
+</body>
+</html>

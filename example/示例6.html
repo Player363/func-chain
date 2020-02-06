@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="../dist/func-chain.umd.js"></script>
+<script>
+    var c1 = new Chain(
+        function (next) {
+            console.log('c1-1')
+            next()
+        },
+        function (next) {
+            console.log('c1-2')
+            next.switchTo(c2)
+        }
+    )
+
+    var c2 = new Chain(
+        function (next) {
+            console.log('c2-1')
+            next()
+        },
+        function (next) {
+            console.log('c2-2')
+            next()
+        }
+    )
+
+    c1.go()
+</script>
+
+</body>
+</html>

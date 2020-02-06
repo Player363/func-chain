@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="../dist/func-chain.umd.js"></script>
+<script>
+    Chain()
+    > function(next){
+        console.log(1)
+        next()
+    }
+    > function(next){
+        console.log(2)
+        next()
+    }
+    > function(next){
+        console.log(3)  // 在这里停止了
+        next.stop()
+    }
+    > function(next){
+        console.log(4)
+        next()
+    }
+    || Chain.go()
+</script>
+
+</body>
+</html>
