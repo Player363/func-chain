@@ -25,7 +25,7 @@ export default [
                 ie8: false,
                 warnings: false
             }),
-            fileSize()
+            fileSize(),
         ]
     },
 
