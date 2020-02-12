@@ -1,15 +1,21 @@
 {
     "name": "func-chain",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "description": "本工具的作用是为回调形式的函数提供一种链式调用的方法",
     "main": "dist/func-chain.cjs.js",
     "typings": "src/index.d.ts",
     "module": "dist/func-chain.esm.js",
     "browser": "dist/func-chain.umd.js",
+    "files": [
+        "dist",
+        "src",
+        "example"
+    ],
     "scripts": {
         "build": "rollup -c",
         "dev": "rollup -c -w",
-        "test": "npm run build && mocha --require intelli-espower-loader"
+        "test": "mocha --require intelli-espower-loader",
+        "prepublishOnly": "npm run build && npm run test"
     },
     "keywords": [],
     "author": "Player363",

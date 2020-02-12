@@ -9,7 +9,7 @@ interface ChainInstance {
 
 // 函数链对象
 interface chain {
-    (a: number): void
+    (): void
     new(...functions: Function[]): ChainInstance
 
     go(): ChainInstance
